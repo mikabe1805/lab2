@@ -49,6 +49,7 @@
         </thead>
 
         <tbody>
+          {{#each events}}
           <tr>
 
             <!-- USER ONLY - Initialize page with appropriate state of button -->
@@ -59,51 +60,26 @@
               <!-- If user already "starred" this event, it should be a yellow star -->
               <!-- <a onclick='toggleInterest(this, "{{ event_id }}"))'class="btn-floating btn-small waves-effect waves-light scale-transition scale-in yellow"><iclass="material-icons">star</i></a> -->
             </td>
-            <td class="blue-text clickable" onclick="location.href='/events/1'">Opening Ceremony</td>
-            <td> <a href='?filter=location:Auditorium'>Auditorium </a></td>
-            <td><a href='?filter=date:05-01-2022'>May 1 (Sat)</a> 10:30 AM</td>
-            <td>30m</td>
-            <td> <a href='?filter=type:Main'>Main</a></td>
-            <td>100<i class=material-icons>people</i></td>
+            <td class="blue-text clickable" onclick="location.href='/events/{{event_id}}'">{{event_name}}</td>
+            <td> <a href='?filter=location:{{event_location}}'>{{event_location}} </a></td>
+            <td><a href='?filter=date:{{event_date_ymd}}'>{{event_date}}</a> {{event_time}}</td>
+            <td>{{event_duration}}</td>
+            <td> <a href='?filter=type:{{event_type}}'>{{event_type}}</a></td>
+            <td>{{event_interest}}<i class=material-icons>people</i></td>
             <!-- ADMIN ONLY BUTTONS -->
             <td nowrap>
 
-              <a class="btn-floating btn-small waves-effect waves-light green lighten-1" href="/events/1/modify"><i
+              <a class="btn-floating btn-small waves-effect waves-light green lighten-1" href="/events/{{event_id}}/modify"><i
                   class="material-icons">edit</i></a>
               <a class="btn-floating waves-effect waves-light red"
-                onclick='confirmDelete("Opening Ceremony","{{ event_id}}", ".")'><i
+                onclick='confirmDelete("{{event_name}}","{{ event_id}}", ".")'><i
                   class="material-icons">delete</i></a>
 
             </td>
           </tr>
+        {{/each}}
 
-          <tr>
-
-            <!-- USER ONLY - Initialize page with appropriate state of button -->
-
-            <td>
-              <a onclick='toggleInterest(this, "{{ event_id }}")'
-                class="btn-floating btn-small waves-effect waves-light scale-transition scale-in blue"><i
-                  class="material-icons">star_border</i></a>
-              <!-- If user already "starred" this event, it should be a yellow star -->
-              <!-- <a onclick='toggleInterest(this, "{{ event_id }}"))'class="btn-floating btn-small waves-effect waves-light scale-transition scale-in yellow"><iclass="material-icons">star</i></a> -->
-            </td>
-            <td class="blue-text clickable" onclick="location.href='/events/2'">Closing Awards Ceremony</td>
-            <td> <a href='?filter=location:Auditorium'>Auditorium </a></td>
-            <td><a href='?filter=date:05-02-2021'>May 2 (Sun)</a> 11:00 AM</td>
-            <td>30m</td>
-            <td> <a href='?filter=type:Main'>Main</a></td>
-            <td>99<i class=material-icons>people</i></td>
-            <!-- ADMIN ONLY BUTTONS -->
-            <td nowrap>
-
-              <a class="btn-floating btn-small waves-effect waves-light green lighten-1" href="/events/1/modify"><i
-                  class="material-icons">edit</i></a>
-              <a class="btn-floating waves-effect waves-light red"
-                onclick='confirmDelete("Opening Ceremony","{{ event_id}}")'><i class="material-icons">delete</i></a>
-
-            </td>
-          </tr>
+          
 
         </tbody>
       </table>
