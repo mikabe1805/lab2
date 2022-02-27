@@ -1,0 +1,115 @@
+
+    <form id="create_update_project" method="post" action="/project">
+      <!-- action and method depend on C vs U-->
+      <input type="hidden" name="project_id" id="project_id" value="0">
+      <!-- server sets project_id value-->
+
+      <div class="container">
+        <div class="card grey lighten-4">
+          <div class="card-content">
+
+            <span class="card-title">
+              <h1>{{ title }}</h1>
+            </span>
+
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input type="text" id="project_name" class="validate" data-length="32" required>
+                <label for="project_name">Project Name</label>
+              </div>
+            </div>
+
+            <!-- https://materializecss.com/select.html -->
+            <div class="row">
+              <div class="input-field col s6">
+                <select id="project_type" name="project_type" required>
+                  <option value="" disabled selected>Select a type</option>
+                  <option value="Main">Main</option>
+                  <option value="Workshop">Workshop</option>
+                  <option value="Food">Food</option>
+                  <option value="Talk">Talk</option>
+                  <option value="Activity">Activity</option>
+                </select>
+                <label for="project_type">Project Type</label>
+              </div>
+
+              <div class="input-field col s6">
+                <select id="project_location" name="project_location" required>
+                  <option value="" disabled selected>Select a location</option>
+                  <option value="Gym">Gym</option>
+                  <option value="Auditorium">Auditorium</option>
+                  <option value="Lower Cafe">Lower Cafe</option>
+                  <option value="Commons">Commons</option>
+                  <option value="Room 136">Room 136</option>
+                  <option value="Room 138A">Room 138A</option>
+                  <option value="Room 138B">Roomb 138B</option>
+                </select>
+                <label for="project_location">Location</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s4">
+                <input type="text" id=project_date name="project_date" class="datepicker no-autoinit" required>
+                <label for="project_date">Date</label>
+              </div>
+
+              <div class="input-field col s4">
+                <input type="text" id="project_time" name="project_time" class="timepicker no-autoinit" twelveHour=true
+                  required>
+                <label for="project_time">Time</label>
+              </div>
+
+              <div class="input-field col s4">
+                <input type="text" id="project_dt_proposed" name="project_dt_proposed" class="datepicker no-autoinit" required>
+                <label for="project_dt_proposed">Date Proposed</label>
+              </div>
+
+              </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" id="project_owner" class="validate" data-length="45" required>
+                  <label for="project_owner">Owner Name</label>
+                </div>
+              </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea id="project_description" class="materialize-textarea" data-length="500"></textarea>
+                <label for="project_description">Description</label>
+              </div>
+            </div>
+
+            <div class="button_wrapper">
+              <button class="submit waves-effect waves-light btn" type="submit">Create</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </form>
+
+  <!-- Special initialization script for initializing .datepicker and.timepicker with options -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.datepicker');
+      var instances = M.Datepicker.init(elems, {
+        format: 'mm-dd-yyyy',
+        autoClose: true
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.timepicker');
+      var instances = M.Timepicker.init(elems, {
+        defaultTime: 'now', // Set default time: 'now', '1:30AM', '16:30'
+        twelveHour: true, // Use AM/PM or 24-hour format
+        autoClose: false, // automatic close timepicker
+      });
+    });
+
+    //TODO Form Validation
+  </script>
