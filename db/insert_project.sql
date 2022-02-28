@@ -6,4 +6,5 @@ VALUES
         ?, 
         STR_TO_DATE(?, '%m-%d-%Y %h:%i %p'), 
         ? ,
+        STR_TO_DATE(?, '%m-%d-%Y'),
         ?);

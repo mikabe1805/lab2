@@ -51,8 +51,8 @@ VALUES
 INSERT INTO project
         (`project_name`, `project_location_id`, `project_type_id`, `project_dt`, `project_owner`, `project_dt_proposed`, `project_description`) 
 VALUES 
-        ('Cooking with Mika', (SELECT project_location_id from project_location where project_location = 'Auditorium'), (SELECT project_type_id from project_type where project_type = 'Food'), '2022-05-18 7:10:00', 'Mika Be', '2022-01-12', 'Cooking with Mika is so much fun! He better see you there, or the next thing he\'ll cook won\'t be animal meat :)')
-        ('Being a Flop', (SELECT project_location_id from project_location where project_location = 'Lower Cafe'), (SELECT project_type_id from project_type where project_type = 'Main'), '2022-02-28 3:00:00', 'Maria Roberts', '2022-02-27', 'Watch Maria be a giant flop! You would be learning from the best')
+        ('Cooking with Mika', (SELECT project_location_id from project_location where project_location = 'Auditorium'), (SELECT project_type_id from project_type where project_type = 'Food'), '2022-05-18 19:10:00', 'Mika Be', '2022-01-12', 'Cooking with Mika is so much fun! He better see you there, or the next thing he\'ll cook won\'t be animal meat :)')
+        ('Being a Flop', (SELECT project_location_id from project_location where project_location = 'Lower Cafe'), (SELECT project_type_id from project_type where project_type = 'Main'), '2022-02-28 15:00:00', 'Maria Roberts', '2022-02-27', 'Watch Maria be a giant flop! You would be learning from the best')
         ;
 
 INSERT into user_type_code (user_type)

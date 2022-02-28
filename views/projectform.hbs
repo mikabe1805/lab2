@@ -57,7 +57,7 @@
 
              <div class="input-field col s4">
                 <input type="text" id=project_dt_proposed name="project_dt_proposed" class="datepicker no-autoinit" required>
-                <label for="project_dt_proposed">Date</label>
+                <label for="project_dt_proposed">Date Proposed</label>
               </div>
             </div>
 
@@ -107,7 +107,7 @@
         document.getElementById("project_date").value = "{{project_date_mdy}}";
         document.getElementById("project_time").value = "{{project_time}}";
         document.getElementById("project_owner").value = "{{project_owner}}";
-        document.getElementById("project_dt_proposed").value = "{{project_proposed}}";
+        document.getElementById("project_dt_proposed").value = "{{project_dt_proposed}}";
         {{!-- Use triple mustaches to NOT escape characters --}}
         document.getElementById("project_description").value = "{{{project_description}}}";
 
