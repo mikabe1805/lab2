@@ -5,7 +5,11 @@
 
 function confirmDelete(project_name, project_id, redirect_to){
     if(confirm(`Are you sure you want to delete the project ${project_name} (id ${project_id})? This is PERMANENT and cannot be undone.`)) {
-        window.location.href = `/projects/${project_id}/delete`;
+        // window.location.href = `/projects/${project_id}/delete`;
+        //TODO: make delete request
+        alert(`Successfully deleted the project ${project_name} (id ${project_id}).`);
+        //What to do next is not widely agreed upon: refresh/redirect to (current) projects page?
+        window.location.href = redirect_to || window.location.href;
     }
 }
 

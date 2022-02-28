@@ -116,14 +116,14 @@ router.post('/:project_id', async function(req, res, next) {
   }
 })
 
-let deleteProjectQuery = "DELETE FROM project WHERE project_id = ?";
-router.get('/:project_id/delete', requireAdmin, async (req, res, next) => {
-  try {
-    await db.queryPromise(deleteProjectQuery, req.params.project_id);
-    res.redirect('/projects')
-  } catch (err) {
-    next(err);
-  }
-})
+// let deleteProjectQuery = "DELETE FROM project WHERE project_id = ?";
+// router.get('/:project_id/delete', requireAdmin, async (req, res, next) => {
+//   try {
+//     await db.queryPromise(deleteProjectQuery, req.params.project_id);
+//     res.redirect('/projects')
+//   } catch (err) {
+//     next(err);
+//   }
+// })
 
 module.exports = router;

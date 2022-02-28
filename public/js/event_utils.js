@@ -5,7 +5,11 @@
 
 function confirmDelete(event_name, event_id, redirect_to){
     if(confirm(`Are you sure you want to delete the event ${event_name} (id ${event_id})? This is PERMANENT and cannot be undone.`)) {
-        window.location.href = `/events/${event_id}/delete`;
+        // window.location.href = `/events/${event_id}/delete`;
+        //TODO: make delete request
+        alert(`Successfully deleted the event ${event_name} (id ${event_id}).`);
+        //What to do next is not widely agreed upon: refresh/redirect to (current) events page?
+        window.location.href = redirect_to || window.location.href;
     }
 }
 
