@@ -79,7 +79,6 @@ router.get('/:project_id/modify', async function(req, res, next) {
 });
 
 let insertProjectQuery = fs.readFileSync(path.join(__dirname, "../db/insert_project.sql"), "utf-8");
-// (`project_name`, `project_location_id`, `project_type_id`, `project_dt`, `project_duration`, `project_description`) 
 router.post('/', async function(req, res, next) {
   try {
     let results = await db.queryPromise(insertProjectQuery, [req.body.project_name, 

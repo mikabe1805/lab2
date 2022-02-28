@@ -49,17 +49,6 @@ let singleEventQuery = fs.readFileSync(path.join(__dirname, "../db/select_event_
 
 router.get('/:event_id', function(req, res, next) {
   let event_id = req.params.event_id
-  // GET FROM DATABASE: Select query where event_id = event_id from URL
-  //For now, lets pretend
-  // let event_data = {event_id: event_id,
-  //                 event_name: "Opening Ceremony", 
-  //                 event_location: "Auditorium",
-  //                 event_date: "May 1 (Sat)",
-  //                 event_time: "10:30 AM",
-  //                 event_duration: "30m",
-  //                 event_type: "Main",
-  //                 event_interest: "100",
-  //                 event_description: "Be there!"}
   db.query(singleEventQuery, [event_id], (err, results) => {
     if (err)
       next(err);
