@@ -7,7 +7,7 @@ SELECT
     DATE_FORMAT(project_dt, '%b %d (%a)') as project_date,
     DATE_FORMAT(project_dt, '%l:%i %p') as project_time,
     project_location,
-    DATE_FORMAT(project_dt_proposed, '%b %d (%a)') as project_dt_proposed,
+    DATE_FORMAT(project_dt_proposed, '%Y-%m-%d') as project_dt_proposed,
     project_description,
     project_interest
 FROM 
