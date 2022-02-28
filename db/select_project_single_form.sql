@@ -6,7 +6,7 @@ SELECT
     DATE_FORMAT(project_dt, '%m-%d-%Y') as project_date_mdy,
     DATE_FORMAT(project_dt, '%l:%i %p') as project_time,
     project_owner,
-    project_dt_proposed,
+    DATE_FORMAT(project_dt_proposed, '%m-%d-%Y') as project_dt_proposed,
     project_description
 FROM 
 	project 

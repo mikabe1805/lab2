@@ -1,12 +1,12 @@
 SELECT 
 	project.project_id as project_id, 
-    project_name, 
-    project_owner,
+    project_name,
+    project_location, 
     project_type,
     DATE_FORMAT(project_dt, '%Y-%m-%d') as project_date_ymd,
     DATE_FORMAT(project_dt, '%b %d (%a)') as project_date,
     DATE_FORMAT(project_dt, '%l:%i %p') as project_time,
-    project_location,
+    project_owner,
     DATE_FORMAT(project_dt_proposed, '%Y-%m-%d') as project_dt_proposed,
     project_description,
     project_interest
