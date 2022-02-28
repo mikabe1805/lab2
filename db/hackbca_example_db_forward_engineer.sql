@@ -2,7 +2,6 @@
 -- Mon Jan 24 14:27:46 2022
 -- Model: New Model    Version: 1.0
 -- MySQL Workbench Forward Engineering
--- NOTE: For MariaDB, remove all the VISIBLE keywords
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
@@ -55,8 +54,8 @@ CREATE TABLE IF NOT EXISTS `hackbca_example`.`event` (
   `event_duration` INT(11) NULL DEFAULT NULL,
   `event_description` VARCHAR(500) NULL DEFAULT NULL,
   PRIMARY KEY (`event_id`),
-  INDEX `event_type_idx` (`event_type_id` ASC) VISIBLE,
-  INDEX `event_location_idx` (`event_location_id` ASC) VISIBLE,
+  INDEX `event_type_idx` (`event_type_id` ASC) ,
+  INDEX `event_location_idx` (`event_location_id` ASC) ,
   CONSTRAINT `event_location`
     FOREIGN KEY (`event_location_id`)
     REFERENCES `hackbca_example`.`event_location` (`event_location_id`)
@@ -70,6 +69,55 @@ CREATE TABLE IF NOT EXISTS `hackbca_example`.`event` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
+-- -----------------------------------------------------
+-- Table `hackbca_example`.`project_location`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `hackbca_example`.`project_location` (
+  `project_location_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `project_location` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`project_location_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `hackbca_example`.`project_type`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `hackbca_example`.`project_type` (
+  `project_type_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `project_type` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`project_type_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `hackbca_example`.`project`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `hackbca_example`.`project` (
+  `project_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `project_name` VARCHAR(45) NOT NULL,
+  `project_location_id` INT(11) NULL DEFAULT NULL,
+  `project_type_id` INT(11) NULL DEFAULT NULL,
+  `project_dt` DATETIME NULL DEFAULT NULL,
+  `project_owner` VARCHAR(45) NULL DEFAULT NULL,
+  `project_dt_proposed` DATETIME NULL DEFAULT NULL,
+  `project_description` VARCHAR(500) NULL DEFAULT NULL,
+  PRIMARY KEY (`project_id`),
+  INDEX `project_type_idx` (`project_type_id` ASC) ,
+  INDEX `project_location_idx` (`project_location_id` ASC) ,
+  CONSTRAINT `project_location`
+    FOREIGN KEY (`project_location_id`)
+    REFERENCES `hackbca_example`.`project_location` (`project_location_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `project_type`
+    FOREIGN KEY (`project_type_id`)
+    REFERENCES `hackbca_example`.`project_type` (`project_type_id`)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
 
 -- -----------------------------------------------------
 -- Table `hackbca_example`.`user_type_code`
@@ -95,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `hackbca_example`.`user` (
   `user_type_code` INT(11) NULL DEFAULT NULL,
   `admin` TINYINT(4) NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`),
-  INDEX `user_type_code_idx` (`user_type_code` ASC) VISIBLE,
+  INDEX `user_type_code_idx` (`user_type_code` ASC) ,
   CONSTRAINT `user_type_code`
     FOREIGN KEY (`user_type_code`)
     REFERENCES `hackbca_example`.`user_type_code` (`user_type_code`)
@@ -112,10 +160,31 @@ CREATE TABLE IF NOT EXISTS `hackbca_example`.`event_user_registration` (
   `user_id` INT(11) NOT NULL,
   `event_id` INT(11) NOT NULL,
   PRIMARY KEY (`user_id`, `event_id`),
-  INDEX `event_id_registration_idx` (`event_id` ASC) VISIBLE,
+  INDEX `event_id_registration_idx` (`event_id` ASC) ,
   CONSTRAINT `event_id_registration`
     FOREIGN KEY (`event_id`)
     REFERENCES `hackbca_example`.`event` (`event_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `user_id_registration`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `hackbca_example`.`user` (`user_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+-- -----------------------------------------------------
+-- Table `hackbca_example`.`project_user_registration`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `hackbca_example`.`project_user_registration` (
+  `user_id` INT(11) NOT NULL,
+  `project_id` INT(11) NOT NULL,
+  PRIMARY KEY (`user_id`, `project_id`),
+  INDEX `project_id_registration_idx` (`project_id` ASC) ,
+  CONSTRAINT `project_id_registration`
+    FOREIGN KEY (`project_id`)
+    REFERENCES `hackbca_example`.`project` (`project_id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `user_id_registration`

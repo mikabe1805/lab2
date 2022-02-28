@@ -1,0 +1,2 @@
+SELECT project_location_id, project_location
+from project_location

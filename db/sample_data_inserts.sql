@@ -5,7 +5,7 @@ INSERT INTO `event_type` (`event_type`) VALUES ('Food');
 INSERT INTO `event_type` (`event_type`) VALUES ('Activity');
 
 -- Or more concisely
--- INSERT INTO `event_type` (`event_type`) VALUES ('Main'), ('Workshop'), ('Talk'), ('Food'), ('Activity');
+INSERT INTO `project_type` (`project_type`) VALUES ('Main'), ('Workshop'), ('Talk'), ('Food'), ('Activity');
 
 
 INSERT INTO `event_location` (`event_location`) VALUES ('Auditorium');
@@ -16,7 +16,7 @@ INSERT INTO `event_location` (`event_location`) VALUES ('Room 136');
 INSERT INTO `event_location` (`event_location`) VALUES ('Lower Cafe');
 
 -- Or more concisely
--- INSERT INTO `event_location` (`event_location`) VALUES ('Auditorium'), ('Gym'),('Room 138A'), ('Room 138B'), ('Room 136'),('Lower Cafe');
+INSERT INTO `project_location` (`project_location`) VALUES ('Auditorium'), ('Gym'),('Room 138A'), ('Room 138B'), ('Room 136'),('Lower Cafe');
 
 
 INSERT INTO event
@@ -48,12 +48,19 @@ VALUES
         
         ;
 
+INSERT INTO project
+        (`project_name`, `project_location_id`, `project_type_id`, `project_dt`, `project_owner`, `project_dt_proposed`, `project_description`) 
+VALUES 
+        ('Cooking with Mika', (SELECT project_location_id from project_location where project_location = 'Auditorium'), (SELECT project_type_id from project_type where project_type = 'Food'), '2022-05-18 7:10:00', 'Mika Be', '2022-01-12', 'Cooking with Mika is so much fun! He better see you there, or the next thing he\'ll cook won\'t be animal meat :)')
+        ('Being a Flop', (SELECT project_location_id from project_location where project_location = 'Lower Cafe'), (SELECT project_type_id from project_type where project_type = 'Main'), '2022-02-28 3:00:00', 'Maria Roberts', '2022-02-27', 'Watch Maria be a giant flop! You would be learning from the best')
+        ;
 
 INSERT into user_type_code (user_type)
 VALUES ("student"), ("teacher"), ("presenter"), ("external student");
 
 INSERT INTO `user` (`first_name`,`last_name`,`email`,`academy`,`class`,`user_type_code`,`admin`) 
 VALUES
+("Mika","Bee","mikbe24@bergen.org","ATCS",2024,(SELECT user_type_code from user_type_code  where user_type = "student"),1),
 ("Tekakwitha","Schwarz","teksch23@bergen.org","ATCS",2023,(SELECT user_type_code from user_type_code  where user_type = "student"),1),
 ("Antton","Pierre","antpie25@bergen.org","ACAHA",2025,(SELECT user_type_code from user_type_code  where user_type = "student"),0),
 ("Emanuel","Sieger","emasie22@bergen.org","AVPA",2022,(SELECT user_type_code from user_type_code  where user_type = "student"),0),
@@ -178,3 +185,7 @@ VALUES
 ((SELECT user_id FROM user WHERE email = "matwanll@bergen.org"), (SELECT event_id FROM event WHERE event_name = "Presentations and Judging")),
 ((SELECT user_id FROM user WHERE email = "shamac24@bergen.org"), (SELECT event_id FROM event WHERE event_name = "Presentations and Judging")),
 ((SELECT user_id FROM user WHERE email = "emasie22@bergen.org"), (SELECT event_id FROM event WHERE event_name = "SQL Crash Course"));
+
+INSERT INTO `project_user_registration` (`user_id`, `project_id`) 
+VALUES 
+((SELECT user_id FROM user WHERE email = "mikbe24@bergen.org"), (SELECT project_id FROM project WHERE project_name = "Cooking with Mika"));

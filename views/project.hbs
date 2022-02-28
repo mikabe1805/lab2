@@ -7,7 +7,7 @@
                         <div class="card-image-gradient"> 
                             <img src="/images/assembly.jpg">
                         </div>
-                        <span class="card-title"><h1>Opening Ceremony</h1></span>
+                        <span class="card-title"><h1>{{project_data.project_name}}</h1></span>
                       <!-- USER ONLY - Initialize page with appropriate state of button -->
                       <a onclick='toggleInterest(this, "{{ project_id }}")' class="btn-floating btn-large halfway-fab waves-effect waves-light scale-transition scale-in blue"><i class="material-icons">star_border</i></a>
                       <!-- <a onclick='toggleInterest(this, "{{ project_id }}"))'class="btn-floating btn-large halfway-fab waves-effect waves-light scale-transition scale-in yellow"><iclass="material-icons">star</i></a> -->
@@ -21,8 +21,8 @@
                                 <th>Location </th>
                                 <th>Date / Time </th>
                                 <th>Owner</th>
-                                <th>Type</th>
-                                <th>Date Proposed</th>
+                                <th>Type </th>
+                                <th>Date Proposed </th>
                                 <th>Interest </th>
                                 <!-- ADMIN ONLY BUTTONS -->
                                 <th>Admin Op</th>
@@ -62,4 +62,4 @@
     
         </div>
 
-        <script src="/js/event_utils.js"></script>
+        <script src="/js/project_utils.js"></script>
